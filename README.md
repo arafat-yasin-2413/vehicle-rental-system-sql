@@ -78,6 +78,7 @@ Retrieve booking information along with:
 
 - Customer name
 - Vehicle name
+
 **Concepts used**: INNER JOIN
 
 ### Query 2: EXISTS
