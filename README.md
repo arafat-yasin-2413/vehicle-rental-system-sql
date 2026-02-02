@@ -1,9 +1,11 @@
 
 # VEHICLE RENTAL SYSTEM (SQL)
 
-This project shows some SQL operations on Vehicle Rental System. There are two roles here - Admin & Customer. Initially there are tables of some users and vehicles. Then the booking table comes. Booking table has two references from users and vehicles table.
+This project shows some SQL operations on Vehicle Rental System. There are two roles here - Admin & Customer. Initially there are tables of some users and vehicles. Then the booking table comes. Booking table has two references from users and vehicles table. Here I have used `PostgreSQL` as my database.
 Here is the table structures given below: 
  
+
+
 
 
 
@@ -30,7 +32,7 @@ Here is the table structures given below:
 ### Vehicles Table (Demo)
 - `vehicle_id` : INT **PRIMARY KEY**
 - `name` : VARCHAR
-- `type`: VARCHAR
+- `type`: VARCHAR (enum: "card", "truck", "bike")
 - `model`: VARCHAR
 - `registration_number`: VARCHAR UNIQUE
 - `rental_price`: NUMERIC(10,2)
@@ -62,6 +64,7 @@ Here is the table structures given below:
 
 
 
+
 ## Relations
 
 - One user can have multiple booking instances : 1 to Many
@@ -69,6 +72,29 @@ Here is the table structures given below:
 - Each row of the bookings table can link with only 1 userId : 1 to 1
 - Each row of the bookings table can link with only 1 vehicleId : 1 to 1
 
+## SQL Queries
+### Query 1: JOIN
+Retrieve booking information along with:
+
+- Customer name
+- Vehicle name
+**Concepts used**: INNER JOIN
+
+### Query 2: EXISTS
+Find all vehicles that have never been booked.
+
+**Concepts used**: NOT EXISTS
+
+### Query 3: WHERE
+Retrieve all available vehicles of a specific type (e.g. cars).
+
+**Concepts used**: SELECT, WHERE
+
+### Query 4: GROUP BY and HAVING
+Find the total number of bookings for each vehicle and display only those vehicles that have more than 2 bookings.
+
+**Concepts used**: GROUP BY, HAVING, COUNT
 
 
-
+------------------
+#### Thanks for reading the whole document. 
