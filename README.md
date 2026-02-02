@@ -7,13 +7,14 @@ Here is the table structures given below:
 
 
 
+
 ## Table Structures
 
 ### Users Table (Demo)
 
 - `user_id` : INT **PRIMARY KEY**
 - `name` : VARCHAR
-- `email`: VARCHAR
+- `email`: VARCHAR UNIQUE
 - `phone`: VARCHAR
 - `role`: VARCHAR (enum: "Admin", "Customer")
 
@@ -31,8 +32,8 @@ Here is the table structures given below:
 - `name` : VARCHAR
 - `type`: VARCHAR
 - `model`: VARCHAR
-- `registration_number`: VARCHAR (enum: "Admin", "Customer")
-- `rental_price`: VARCHAR (enum: "Admin", "Customer")
+- `registration_number`: VARCHAR UNIQUE
+- `rental_price`: NUMERIC(10,2)
 - `status`: VARCHAR (enum: "Admin", "Customer")
 
 | vehicle_id | name | type | model | registration_number | rental_price | status |
@@ -43,7 +44,13 @@ Here is the table structures given below:
 | 4	| Ford F-150    |	truck	| 2020 |JKL-6587|	7000|	maintenance|
 
 ### Bookings Table (Demo)
-
+- `booking_id` : INT **PRIMARY KEY**
+- `user_id` : INT **FOREIGN KEY**
+- `vehicle_id`: INT **FOREIGN KEY**
+- `start_date`: DATE
+- `end_date`: DATE
+- `status`: VARCHAR (enum: "pending", "confirmed", "completed", "cancelled")
+- `total_cost`: NUMERIC(10,2)
 
 | booking_id | user_id | vehicle_id | start_date | end_date | status | total_cost|
 | :-------- | :------ | :------- | :-------| :--------| :------- | :---------|
@@ -51,6 +58,17 @@ Here is the table structures given below:
 |2|	1|	2|	2025-11-01|	2025-11-03|	completed	|12000|
 |3|	3|	3|	2025-12-01|	2025-12-02|	confirmed	|2500|
 |4|	1|	4|	2025-12-10|	2025-12-12|	pending	|14000|
+|5| 1|  1|  2025-12-14| 2025-12-17| cancelled| 16500|
+
+
+
+## Relations
+
+- One user can have multiple booking instances : 1 to Many
+- A single vehicle can be linked with multiple booking instances : 1 to Many
+- Each row of the bookings table can link with only 1 userId : 1 to 1
+- Each row of the bookings table can link with only 1 vehicleId : 1 to 1
+
 
 
 
